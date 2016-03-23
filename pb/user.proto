@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package pb;
+
+// The Count service definition.
+service UserService {
+  rpc FindOne (UserFindOneRequest) returns (UserResponse) {}
+  //rpc FindAll (UsersRequest) returns (UsersResponse) {}
+  rpc Save (UserSaveRequest) returns (UserSaveResponse) {}
+}
+
+// REQUESTS
+message UserFindAllRequest {
+    UserSearch userSearch = 1;
+    int32 limit = 2;
+    string startKey = 3;
+}
+
+message UserFindOneRequest {
+    UserSearch userSearch = 1;
+}
+
+message UserSaveRequest {
+    User user = 1;
+}
+
+
+// RESPONSES
+
+message UserResponse {
+    User user = 1;
+}
+
+message UsersResponse {
+    repeated User users = 1;
+    string lastKey = 2;
+}
+
+message UserSaveResponse {
+    User user = 1;
+}
+
+// STRUCTURE
+
+message User {
+    string id = 1;
+    string firstName = 2;
+    string lastName = 3;
+    string email = 4;
+    string address = 5;
+    string street = 6;
+    string postCode = 7;
+    string city = 8;
+    string country = 9;
+    string phone = 10;
+}
+
+message UserSearch {
+    string id = 1;
+    string firstName = 2;
+    string lastName = 3;
+    string email = 4;
+    string postCode = 5;
+}
